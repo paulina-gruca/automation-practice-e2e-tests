@@ -6,10 +6,10 @@ import pages.HomePage;
 public class NavigationToContactPageTest extends TestBase {
 
     @Test
-    public void shouldNavigateFromHomeToContactPage(){
+    public void shouldNavigateFromHomeToContactPage()
+    {
         HomePage homePage = new HomePage(driver);
         ContactPage contactPage = homePage.clickContactUsButton();
         Assertions.assertTrue(contactPage.contactPageIsOpen());
     }
-
 }

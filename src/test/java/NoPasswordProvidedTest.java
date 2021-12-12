@@ -7,7 +7,8 @@ import pages.NoPasswordErrorPage;
 public class NoPasswordProvidedTest extends TestBase{
 
     @Test
-    public void shouldLoginWithoutEmailProvided(){
+    public void shouldFailLoggingInWithoutEmailProvided()
+    {
         HomePage homePage = new HomePage(driver);
         LogInPage loginPage = homePage.clickSignInButton();
         NoPasswordErrorPage noPasswordErrorPage = loginPage.clickLogInButtonWithoutPassword("test@softie.pl");

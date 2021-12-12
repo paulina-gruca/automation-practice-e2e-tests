@@ -7,7 +7,8 @@ import pages.SearchPage;
 public class DeletingProductFromCartTest extends TestBase {
 
     @Test
-    public void shouldDeleteItemFromCart(){
+    public void shouldDeleteProductFromCart()
+    {
         HomePage homePage = new HomePage(driver);
         homePage.searchProducts("dress");
         SearchPage searchPage = new SearchPage(driver);
@@ -16,5 +17,4 @@ public class DeletingProductFromCartTest extends TestBase {
         cartPage.clickDeleteButtonToRemoveProduct();
         Assertions.assertTrue(cartPage.productWasDeletedFromCart());
     }
-
 }

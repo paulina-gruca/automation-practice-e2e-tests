@@ -6,7 +6,8 @@ import pages.SearchPage;
 public class AddingProductToCartTest extends TestBase{
 
     @Test
-    public void shouldAddItemToCart() {
+    public void shouldAddProductToCart()
+    {
         HomePage homePage = new HomePage(driver);
         homePage.searchProducts("dress");
         SearchPage searchPage = new SearchPage(driver);

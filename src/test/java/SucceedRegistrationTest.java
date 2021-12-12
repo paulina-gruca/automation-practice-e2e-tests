@@ -8,7 +8,8 @@ import pages.RegistrationPage;
 public class SucceedRegistrationTest extends TestBase {
 
     @Test
-    public void shouldRegisterNewCustomer(){
+    public void shouldRegisterNewCustomer()
+    {
         HomePage homePage = new HomePage(driver);
         LogInPage loginPage = homePage.clickSignInButton();
         loginPage.generateAndEnterEmail();
@@ -17,5 +18,4 @@ public class SucceedRegistrationTest extends TestBase {
         CorrectAuthenticationPage correctAuthenticationPage = registrationPage.clickOnRegisterButtonWithAllRequiredData();
         Assertions.assertTrue(correctAuthenticationPage.newUserWasRegistered());
     }
-
 }

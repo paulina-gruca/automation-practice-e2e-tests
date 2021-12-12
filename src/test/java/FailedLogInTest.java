@@ -7,7 +7,8 @@ import pages.LogInPage;
 public class FailedLogInTest extends TestBase{
 
     @Test
-    public void shouldFailWithIncorrectPassword(){
+    public void shouldFailWithIncorrectPassword()
+    {
         HomePage homePage = new HomePage(driver);
         LogInPage loginPage = homePage.clickSignInButton();
         loginPage.enterLogin("test@softie.pl");

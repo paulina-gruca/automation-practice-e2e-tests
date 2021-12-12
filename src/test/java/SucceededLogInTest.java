@@ -7,7 +7,8 @@ import pages.LogInPage;
 public class SucceededLogInTest extends TestBase{
 
     @Test
-    public void shouldLoginWithCorrectPasswordAndLogout(){
+    public void shouldLogInWithCorrectPasswordAndLogOut()
+    {
         HomePage homePage = new HomePage(driver);
         LogInPage loginPage = homePage.clickSignInButton();
         loginPage.enterCorrectLogInData("test@softie.pl", "1qaz!QAZ");

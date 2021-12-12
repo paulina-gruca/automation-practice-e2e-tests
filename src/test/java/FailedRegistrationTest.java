@@ -7,7 +7,8 @@ import pages.RegistrationPage;
 public class FailedRegistrationTest extends TestBase {
 
     @Test
-    public void shouldFailRegisterNewCustomer(){
+    public void shouldFailNewCustomerRegistration()
+    {
         HomePage homePage = new HomePage(driver);
         LogInPage loginPage = homePage.clickSignInButton();
         loginPage.generateAndEnterEmail();
@@ -16,5 +17,4 @@ public class FailedRegistrationTest extends TestBase {
         registrationPage.clickOnRegisterButtonWithoutAllRequiredData();
         Assertions.assertTrue(registrationPage.alertIsDisplayed());
     }
-
 }

@@ -14,7 +14,6 @@ import pages.AddressPage;
 public class CartPage {
 
     private WebDriver driver;
-    private WebDriverWait wait;
     private CartPageLocators cartPageLocators;
 
     public CartPage(WebDriver driver)
@@ -22,12 +21,12 @@ public class CartPage {
         this.driver = driver;
         cartPageLocators = new CartPageLocators();
         PageFactory.initElements(driver, cartPageLocators);
-        wait = new WebDriverWait(driver, 10);
     }
 
     public void clickDeleteButtonToRemoveProduct()
     {
         cartPageLocators.getDeleteButton().click();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"center_column\"]/p")));
     }
 

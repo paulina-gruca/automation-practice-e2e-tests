@@ -6,7 +6,8 @@ import pages.SearchPage;
 public class SortingSearchedProductsByNameTest extends TestBase{
 
     @Test
-    public void shouldSortBySearchedItems(){
+    public void shouldSortProductsByName()
+    {
         HomePage homePage = new HomePage(driver);
         homePage.searchProducts("dress");
         SearchPage searchPage = new SearchPage(driver);

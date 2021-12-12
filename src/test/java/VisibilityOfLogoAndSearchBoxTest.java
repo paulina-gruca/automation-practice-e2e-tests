@@ -6,7 +6,8 @@ import pages.LogInPage;
 public class VisibilityOfLogoAndSearchBoxTest extends TestBase {
 
     @Test
-    public void shouldLogoAndSearchAreaBeVisibleOnHomeAndLoginPages(){
+    public void shouldLogoAndSearchBoxBeVisibleOnHomeAndLoginPages()
+    {
         HomePage homePage = new HomePage(driver);
         Assertions.assertTrue(homePage.logoIsDisplayed());
         Assertions.assertTrue(homePage.searchAreaIsDisplayed());
@@ -14,5 +15,4 @@ public class VisibilityOfLogoAndSearchBoxTest extends TestBase {
         Assertions.assertTrue(loginPage.logoIsDisplayed());
         Assertions.assertTrue(loginPage.searchAreaIsDisplayed());
     }
-
 }

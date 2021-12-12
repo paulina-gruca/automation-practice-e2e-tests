@@ -5,7 +5,8 @@ import pages.*;
 public class SucceededBuyProductTest extends TestBase{
 
     @Test
-    public void shouldBuyItem(){
+    public void shouldBuyProduct()
+    {
         HomePage homePage = new HomePage(driver);
         homePage.searchProducts("dress");
         SearchPage searchPage = new SearchPage(driver);
@@ -25,5 +26,4 @@ public class SucceededBuyProductTest extends TestBase{
         paymentPage.clickOnConfirmationButton();
         Assertions.assertTrue(paymentPage.orderConfirmationHeadingIsDisplayed());
     }
-
 }

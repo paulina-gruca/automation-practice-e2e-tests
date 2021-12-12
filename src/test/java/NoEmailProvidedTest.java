@@ -7,7 +7,8 @@ import pages.NoEmailErrorPage;
 public class NoEmailProvidedTest extends TestBase{
 
     @Test
-    public void shouldLoginWithoutEmailProvided(){
+    public void shouldFailLoggingInWithoutEmailProvided()
+    {
         HomePage homePage = new HomePage(driver);
         LogInPage loginPage = homePage.clickSignInButton();
         NoEmailErrorPage noEmailErrorPage = loginPage.clickLogInButtonWithoutEmail("1qaz!QAZ");

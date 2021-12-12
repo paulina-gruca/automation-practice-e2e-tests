@@ -7,7 +7,8 @@ import pages.HomePage;
 public class SucceededFillInContactFormTest extends TestBase {
 
     @Test
-    public void shouldFillInContactForm(){
+    public void shouldFillInContactForm()
+    {
         HomePage homePage = new HomePage(driver);
         ContactPage contactPage = homePage.clickContactUsButton();
         contactPage.fillInContactForm("test@softie.pl", "Hello!");
