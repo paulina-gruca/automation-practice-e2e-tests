@@ -1,15 +1,18 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import pages.HomePage;
+import pages.LogInPage;
+import pages.RegistrationPage;
 
 public class FailedRegistrationTest extends TestBase {
 
     @Test
     public void shouldFailRegisterNewCustomer(){
         HomePage homePage = new HomePage(driver);
-        LoginPage loginPage = homePage.clickSigninButton();
-        loginPage.createAnEmail();
+        LogInPage loginPage = homePage.clickSignInButton();
+        loginPage.generateAndEnterEmail();
         RegistrationPage registrationPage = loginPage.clickOnCreateAnAccountButton();
-        registrationPage.fillInRegisterForm();
+        registrationPage.incompleteFillInRegisterForm();
         registrationPage.clickOnRegisterButtonWithoutAllRequiredData();
         Assertions.assertTrue(registrationPage.alertIsDisplayed());
     }

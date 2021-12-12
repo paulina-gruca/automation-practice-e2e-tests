@@ -1,26 +1,27 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import pages.*;
 
-public class SucceededBuyItemTest extends TestBase{
+public class SucceededBuyProductTest extends TestBase{
 
     @Test
     public void shouldBuyItem(){
         HomePage homePage = new HomePage(driver);
-        homePage.searchItems("dress");
+        homePage.searchProducts("dress");
         SearchPage searchPage = new SearchPage(driver);
         searchPage.clickAddToCartButton();
-        CartPage cartPage = searchPage.clickProceedCheckOutButton();
-        Assertions.assertTrue(cartPage.itemWasAddedToCart());
+        CartPage cartPage = searchPage.clickProceedToCheckOutButton();
+        Assertions.assertTrue(cartPage.productWasAddedToCart());
         cartPage.clickProceedToCheckOutButton();
-        LoginPage loginPage = new LoginPage(driver);
+        LogInPage loginPage = new LogInPage(driver);
         loginPage.enterCorrectLogInData("test@softie.pl", "1qaz!QAZ");
-        AddressPage addressPage = loginPage.clickLoginButton();
+        AddressPage addressPage = loginPage.clickLogInButton();
         addressPage.fillInMessageArea("Hello");
         ShippingPage shippingPage = addressPage.clickOnProceedToCheckOutButton();
-        shippingPage.checkErrorProcedure();
+        shippingPage.clickProceedToCheckOutButtonAndDismissErrorMessage();
         PaymentPage paymentPage = shippingPage.confirmTermsOfServiceAndClickOnProceedToCheckOutButton();
         paymentPage.choosePayByBankOption();
-        Assertions.assertTrue(paymentPage.correctHeadingIsDisplayed());
+        Assertions.assertTrue(paymentPage.bankWirePaymentHeadingIsDisplayed());
         paymentPage.clickOnConfirmationButton();
         Assertions.assertTrue(paymentPage.orderConfirmationHeadingIsDisplayed());
     }

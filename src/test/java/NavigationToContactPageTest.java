@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import pages.ContactPage;
+import pages.HomePage;
 
 public class NavigationToContactPageTest extends TestBase {
 

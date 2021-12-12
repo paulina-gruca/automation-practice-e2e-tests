@@ -17,9 +17,8 @@ public class TestBase {
         driver.get("http://www.automationpractice.com");
     }
 
-    @AfterAll
-    static void quitDriver(){
-        driver.quit();
-    }
-
+//    @AfterAll
+//    static void quitDriver(){
+//        driver.quit();
+//    }
 }
