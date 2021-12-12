@@ -1,3 +1,4 @@
+import com.github.javafaker.Faker;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,6 +22,12 @@ public class LoginPage {
 
     @FindBy(xpath = "//*[@id=\"SubmitLogin\"]/span")
     WebElement loginButton;
+
+    @FindBy(id = "email_create")
+    WebElement emailTextBox;
+
+    @FindBy(id = "SubmitCreate")
+    WebElement createAnAccountButton;
 
     public LoginPage(WebDriver driver){
         this.driver = driver;
@@ -79,4 +86,14 @@ public class LoginPage {
         return driver.getTitle().equals("Login - My Store");
     }
 
+    public void createAnEmail(){
+        Faker faker = new Faker();
+        String uniqueEmail = faker.name().firstName() + faker.name().lastName() + faker.random().nextInt(100) + "@test.com";
+        emailTextBox.sendKeys(uniqueEmail);
+    }
+
+    public RegistrationPage clickOnCreateAnAccountButton(){
+        createAnAccountButton.click();
+        return new RegistrationPage(driver);
+    }
 }

@@ -31,4 +31,7 @@ public class CorrectAuthenticationPage {
         return new LoginPage(driver);
     }
 
+    public boolean newUserWasRegistered(){
+        return driver.getPageSource().contains("Welcome to your account");
+    }
 }

@@ -33,7 +33,7 @@ public class ContactPage {
 
     public void fillInContactForm(String email, String text){
         Random random = new Random();
-        int index = random.nextInt(2) + 1;
+        int index = random.nextInt(listOfSubjectHeadings.size() - 1) + 1;
         listOfSubjectHeadings.get(index).click();
         emailTextBox.sendKeys(email);
         textArea.sendKeys(text);
