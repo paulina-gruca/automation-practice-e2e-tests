@@ -10,15 +10,17 @@ public class TestBase {
     static WebDriver driver;
 
     @BeforeAll
-    static void initializeWebDriver(){
+    static void initializeWebDriver()
+    {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.get("http://www.automationpractice.com");
     }
 
-//    @AfterAll
-//    static void quitDriver(){
-//        driver.quit();
-//    }
+    @AfterAll
+    static void quitDriver()
+    {
+        driver.quit();
+    }
 }
