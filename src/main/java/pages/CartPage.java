@@ -30,12 +30,12 @@ public class CartPage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"center_column\"]/p")));
     }
 
-    public boolean productWasDeletedFromCart()
+    public boolean productIsDeletedFromCart()
     {
         return driver.getPageSource().contains("Your shopping cart is empty.");
     }
 
-    public boolean productWasAddedToCart()
+    public boolean productIsAddedToCart()
     {
         return driver.getPageSource().contains("Shopping-cart summary");
     }

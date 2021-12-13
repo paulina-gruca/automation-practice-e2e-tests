@@ -12,7 +12,7 @@ public class SucceededBuyProductTest extends TestBase{
         SearchPage searchPage = new SearchPage(driver);
         searchPage.clickAddToCartButton();
         CartPage cartPage = searchPage.clickProceedToCheckOutButton();
-        Assertions.assertTrue(cartPage.productWasAddedToCart());
+        Assertions.assertTrue(cartPage.productIsAddedToCart());
         cartPage.clickProceedToCheckOutButton();
         LogInPage loginPage = new LogInPage(driver);
         loginPage.enterCorrectLogInData("test@softie.pl", "1qaz!QAZ");

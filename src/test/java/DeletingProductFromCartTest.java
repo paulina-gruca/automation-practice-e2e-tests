@@ -15,6 +15,6 @@ public class DeletingProductFromCartTest extends TestBase {
         searchPage.clickAddToCartButton();
         CartPage cartPage = searchPage.clickProceedToCheckOutButton();
         cartPage.clickDeleteButtonToRemoveProduct();
-        Assertions.assertTrue(cartPage.productWasDeletedFromCart());
+        Assertions.assertTrue(cartPage.productIsDeletedFromCart());
     }
 }
