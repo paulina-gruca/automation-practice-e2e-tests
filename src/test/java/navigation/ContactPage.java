@@ -1,4 +1,4 @@
-package pages;
+package navigation;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Random;
 
 public class ContactPage {
+
+    @FindBy(css = "#header_logo > a > img")
+    private WebElement logo;
 
     @FindBy(css ="#id_contact > option")
     private List<WebElement> listOfSubjectHeadings;
@@ -30,6 +33,11 @@ public class ContactPage {
         this.driver = driver;
         PageFactory.initElements(driver, this);
         random = new Random();
+    }
+
+    public void clickOnLogo()
+    {
+        logo.click();
     }
 
     public boolean contactPageIsOpen()

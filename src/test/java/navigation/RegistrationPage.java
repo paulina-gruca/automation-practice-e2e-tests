@@ -1,4 +1,4 @@
-package pages;
+package navigation;
 
 import com.github.javafaker.Faker;
 import org.openqa.selenium.WebDriver;

@@ -1,4 +1,4 @@
-package pages;
+package navigation;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,6 +15,9 @@ public class PaymentPage {
 
     @FindBy(css = "#cart_navigation > button")
     private WebElement confirmationOfOrderButton;
+
+    @FindBy(css = "#header_logo > a > img")
+    private WebElement logo;
 
     private WebDriver driver;
 
@@ -42,5 +45,10 @@ public class PaymentPage {
     public boolean orderConfirmationHeadingIsDisplayed()
     {
         return driver.getCurrentUrl().contains("controller=order-confirmation&id_cart");
+    }
+
+    public void clickOnLogo()
+    {
+        logo.click();
     }
 }

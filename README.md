@@ -15,7 +15,7 @@ To run tests import project to IntelliJ as Maven project.
 There are two branches:
 
 - main
-- refactor-pages-to-process
+- refactor-navigation-to-process
 
 Main branch implements Selenium tests using standard Page Object Model.
 

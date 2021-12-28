@@ -1,4 +1,4 @@
-package pages;
+package navigation;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -17,6 +17,9 @@ public class CartPage {
 
     @FindBy(css = "#center_column > p.cart_navigation.clearfix > a.button.btn.btn-default.standard-checkout.button-medium")
     private WebElement proceedToCheckOutButton;
+
+    @FindBy(css = "#header_logo > a > img")
+    private WebElement logo;
 
     private WebDriver driver;
 
@@ -46,5 +49,10 @@ public class CartPage {
     public void clickProceedToCheckOutButton()
     {
         proceedToCheckOutButton.click();
+    }
+
+    public void clickOnLogo()
+    {
+        logo.click();
     }
 }

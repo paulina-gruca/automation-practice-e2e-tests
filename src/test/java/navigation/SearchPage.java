@@ -1,4 +1,4 @@
-package pages;
+package navigation;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -29,6 +29,12 @@ public class SearchPage {
     @FindBy(css = "#layer_cart > div.clearfix > div.layer_cart_cart.col-xs-12.col-md-6 > div.button-container > a")
     private WebElement proceedToCheckOutButton;
 
+    @FindBy(className = "cross")
+    private WebElement crossSign;
+
+    @FindBy(css = "#header_logo > a > img")
+    private WebElement logo;
+
     private WebDriver driver;
 
     public SearchPage(WebDriver driver)
@@ -53,7 +59,7 @@ public class SearchPage {
         Actions builder = new Actions(driver);
         builder.moveToElement(imageOfProduct).build().perform();
         addToCartButton.click();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("icon-ok")));
     }
 
@@ -65,5 +71,15 @@ public class SearchPage {
     public void clickProceedToCheckOutButton()
     {
         proceedToCheckOutButton.click();
+    }
+
+    public void clickOnCrossSign()
+    {
+        crossSign.click();
+    }
+
+    public void clickOnLogo()
+    {
+        logo.click();
     }
 }

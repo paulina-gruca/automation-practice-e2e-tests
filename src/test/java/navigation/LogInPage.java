@@ -1,4 +1,4 @@
-package pages;
+package navigation;
 
 import com.github.javafaker.Faker;
 import org.openqa.selenium.WebDriver;
@@ -20,7 +20,7 @@ public class LogInPage {
     @FindBy(id = "passwd")
     private WebElement passwordTextBox;
 
-    @FindBy(xpath = "//*[@id=\"SubmitLogin\"]/span")
+    @FindBy(id = "SubmitLogin")
     private WebElement signInButton;
 
     @FindBy(id = "email_create")
@@ -59,11 +59,10 @@ public class LogInPage {
         passwordTextBox.sendKeys(password);
     }
 
-    public void enterCorrectLogInDataAndClickLogInButton(String login, String password)
+    public void enterCorrectLogInData(String login, String password)
     {
         emailAddressTextBox.sendKeys(login);
         passwordTextBox.sendKeys(password);
-        signInButton.click();
     }
 
     public void clickLogInButton()
@@ -102,5 +101,10 @@ public class LogInPage {
     public void clickOnCreateAnAccountButton()
     {
         createAnAccountButton.click();
+    }
+
+    public void clickOnLogo()
+    {
+        logo.click();
     }
 }
