@@ -10,8 +10,10 @@ public class NoEmailProvidedTest extends TestBase{
     public void shouldFailLoggingInWithoutEmailProvided()
     {
         HomePage homePage = new HomePage(driver);
-        LogInPage loginPage = homePage.clickSignInButton();
-        NoEmailErrorPage noEmailErrorPage = loginPage.clickLogInButtonWithoutEmail("1qaz!QAZ");
+        homePage.clickSignInButton();
+        LogInPage loginPage = new LogInPage(driver);
+        loginPage.clickLogInButtonWithoutEmail("1qaz!QAZ");
+        NoEmailErrorPage noEmailErrorPage = new NoEmailErrorPage(driver);
         Assertions.assertTrue(noEmailErrorPage.noEmailCommunicateIsDisplayed());
     }
 }

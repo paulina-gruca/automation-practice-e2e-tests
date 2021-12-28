@@ -1,31 +1,38 @@
 package pages;
 
-import locators.ShippingPageLocators;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class ShippingPage {
 
+    @FindBy(id = "cgv")
+    private WebElement termsOfServiceCheckBox;
+
+    @FindBy(css = "#order > div.fancybox-overlay.fancybox-overlay-fixed > div > div > a")
+    private WebElement closingAlertButton;
+
+    @FindBy(name = "processCarrier")
+    private WebElement proceedToCheckOutButton;
+
     private WebDriver driver;
-    private ShippingPageLocators shippingPageLocators;
 
     public ShippingPage(WebDriver driver)
     {
         this.driver = driver;
-        shippingPageLocators = new ShippingPageLocators();
-        PageFactory.initElements(driver, shippingPageLocators);
+        PageFactory.initElements(driver, this);
     }
 
     public void clickProceedToCheckOutButtonAndDismissErrorMessage()
     {
-        shippingPageLocators.getProceedToCheckOutButton().click();
-        shippingPageLocators.getClosingAlertButton().click();
+        proceedToCheckOutButton.click();
+        closingAlertButton.click();
     }
 
-    public PaymentPage confirmTermsOfServiceAndClickOnProceedToCheckOutButton()
+    public void confirmTermsOfServiceAndClickOnProceedToCheckOutButton()
     {
-        shippingPageLocators.getTermsOfServiceCheckBox().click();
-        shippingPageLocators.getProceedToCheckOutButton().click();
-        return new PaymentPage(driver);
+        termsOfServiceCheckBox.click();
+        proceedToCheckOutButton.click();
     }
 }

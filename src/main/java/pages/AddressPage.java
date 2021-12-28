@@ -1,29 +1,33 @@
 package pages;
 
-import locators.AddressPageLocators;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class AddressPage {
 
+    @FindBy(name = "message")
+    private WebElement messageArea;
+
+    @FindBy(name = "processAddress")
+    private WebElement proceedToCheckOutButton;
+
     private WebDriver driver;
-    private AddressPageLocators addressPageLocators;
 
     public AddressPage(WebDriver driver)
     {
         this.driver = driver;
-        addressPageLocators = new AddressPageLocators();
-        PageFactory.initElements(driver, addressPageLocators);
+        PageFactory.initElements(driver, this);
     }
 
     public void fillInMessageArea(String text)
     {
-        addressPageLocators.getMessageArea().sendKeys(text);
+        messageArea.sendKeys(text);
     }
 
-    public ShippingPage clickOnProceedToCheckOutButton()
+    public void clickOnProceedToCheckOutButton()
     {
-        addressPageLocators.getProceedToCheckOutButton().click();
-        return new ShippingPage(driver);
+        proceedToCheckOutButton.click();
     }
 }

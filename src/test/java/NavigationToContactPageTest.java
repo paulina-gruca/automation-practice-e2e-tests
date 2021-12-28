@@ -9,7 +9,8 @@ public class NavigationToContactPageTest extends TestBase {
     public void shouldNavigateFromHomeToContactPage()
     {
         HomePage homePage = new HomePage(driver);
-        ContactPage contactPage = homePage.clickContactUsButton();
+        homePage.clickContactUsButton();
+        ContactPage contactPage = new ContactPage(driver);
         Assertions.assertTrue(contactPage.contactPageIsOpen());
     }
 }

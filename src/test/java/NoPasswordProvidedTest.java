@@ -10,8 +10,10 @@ public class NoPasswordProvidedTest extends TestBase{
     public void shouldFailLoggingInWithoutEmailProvided()
     {
         HomePage homePage = new HomePage(driver);
-        LogInPage loginPage = homePage.clickSignInButton();
-        NoPasswordErrorPage noPasswordErrorPage = loginPage.clickLogInButtonWithoutPassword("test@softie.pl");
+        homePage.clickSignInButton();
+        LogInPage loginPage = new LogInPage(driver);
+        loginPage.clickLogInButtonWithoutPassword("test@softie.pl");
+        NoPasswordErrorPage noPasswordErrorPage = new NoPasswordErrorPage(driver);
         Assertions.assertTrue(noPasswordErrorPage.noPasswordCommunicateIsDisplayed());
     }
 }

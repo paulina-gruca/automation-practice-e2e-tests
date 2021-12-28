@@ -1,80 +1,91 @@
 package pages;
 
 import com.github.javafaker.Faker;
-import locators.LogInPageLocators;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class LogInPage {
 
+    @FindBy(css = "#header_logo > a > img")
+    private WebElement logo;
+
+    @FindBy(id = "search_query_top")
+    private WebElement searchBox;
+
+    @FindBy(id = "email")
+    private WebElement emailAddressTextBox;
+
+    @FindBy(id = "passwd")
+    private WebElement passwordTextBox;
+
+    @FindBy(xpath = "//*[@id=\"SubmitLogin\"]/span")
+    private WebElement signInButton;
+
+    @FindBy(id = "email_create")
+    private WebElement createEmailAddressTextBox;
+
+    @FindBy(id = "SubmitCreate")
+    private WebElement createAnAccountButton;
+
     private WebDriver driver;
-    private LogInPageLocators loginPageLocators;
     private Faker faker;
 
     public LogInPage(WebDriver driver)
     {
         this.driver = driver;
-        loginPageLocators = new LogInPageLocators();
-        PageFactory.initElements(driver, loginPageLocators);
+        PageFactory.initElements(driver, this);
         faker = new Faker();
     }
 
     public boolean logoIsDisplayed()
     {
-        return loginPageLocators.getLogo().isDisplayed();
+        return logo.isDisplayed();
     }
 
     public boolean searchAreaIsDisplayed()
     {
-        return loginPageLocators.getSearchBox().isDisplayed();
+        return searchBox.isDisplayed();
     }
 
     public void enterLogin(String login)
     {
-        loginPageLocators.getEmailAddressTextBox().sendKeys(login);
+        emailAddressTextBox.sendKeys(login);
     }
 
     public void enterPassword(String password)
     {
-        loginPageLocators.getPasswordTextBox().sendKeys(password);
+        passwordTextBox.sendKeys(password);
     }
 
-    public void enterCorrectLogInData(String login, String password)
+    public void enterCorrectLogInDataAndClickLogInButton(String login, String password)
     {
-        loginPageLocators.getEmailAddressTextBox().sendKeys(login);
-        loginPageLocators.getPasswordTextBox().sendKeys(password);
+        emailAddressTextBox.sendKeys(login);
+        passwordTextBox.sendKeys(password);
+        signInButton.click();
     }
 
-    public AddressPage clickLogInButton()
+    public void clickLogInButton()
     {
-        loginPageLocators.getSignInButton().click();
-        return new AddressPage(driver);
+        signInButton.click();
     }
 
-    public CorrectAuthenticationPage clickLogInButtonWithCorrectPassword()
+    public void clickLogInButtonWithIncorrectPassword()
     {
-        loginPageLocators.getSignInButton().click();
-        return new CorrectAuthenticationPage(driver);
+        signInButton.click();
     }
 
-    public FailedAuthenticationPage clickLogInButtonWithIncorrectPassword()
+    public void clickLogInButtonWithoutEmail(String password)
     {
-        loginPageLocators.getSignInButton().click();
-        return new FailedAuthenticationPage(driver);
+        passwordTextBox.sendKeys(password);
+        signInButton.click();
     }
 
-    public NoEmailErrorPage clickLogInButtonWithoutEmail(String password)
+    public void clickLogInButtonWithoutPassword(String email)
     {
-        loginPageLocators.getPasswordTextBox().sendKeys(password);
-        loginPageLocators.getSignInButton().click();
-        return new NoEmailErrorPage(driver);
-    }
-
-    public NoPasswordErrorPage clickLogInButtonWithoutPassword(String email)
-    {
-        loginPageLocators.getEmailAddressTextBox().sendKeys(email);
-        loginPageLocators.getSignInButton().click();
-        return new NoPasswordErrorPage(driver);
+        emailAddressTextBox.sendKeys(email);
+        signInButton.click();
     }
 
     public boolean loginPageTitleIsDisplayed ()
@@ -85,12 +96,11 @@ public class LogInPage {
     public void generateAndEnterEmail()
     {
         String uniqueEmail = faker.name().firstName() + faker.name().lastName() + faker.random().nextInt(100) + "@test.com";
-        loginPageLocators.getCreateEmailAddressTextBox().sendKeys(uniqueEmail);
+        createEmailAddressTextBox.sendKeys(uniqueEmail);
     }
 
-    public RegistrationPage clickOnCreateAnAccountButton()
+    public void clickOnCreateAnAccountButton()
     {
-        loginPageLocators.getCreateAnAccountButton().click();
-        return new RegistrationPage(driver);
+        createAnAccountButton.click();
     }
 }

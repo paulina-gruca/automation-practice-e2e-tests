@@ -1,24 +1,26 @@
 package pages;
 
-import locators.FailedAuthenticationPageLocators;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class FailedAuthenticationPage {
 
+    @FindBy(css = "#center_column > div.alert.alert-danger > ol > li")
+    private WebElement errorAlert;
+
     private WebDriver driver;
-    private FailedAuthenticationPageLocators failedAuthenticationPageLocators;
 
     public FailedAuthenticationPage(WebDriver driver)
     {
         this.driver = driver;
-        failedAuthenticationPageLocators = new FailedAuthenticationPageLocators();
-        PageFactory.initElements(driver, failedAuthenticationPageLocators);
+        PageFactory.initElements(driver, this);
     }
 
     public boolean errorCommunicateIsDisplayed()
     {
-        return failedAuthenticationPageLocators.getErrorAlert().isDisplayed();
+        return errorAlert.isDisplayed();
     }
 
 }

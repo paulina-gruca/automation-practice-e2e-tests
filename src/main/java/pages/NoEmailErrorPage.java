@@ -1,23 +1,25 @@
 package pages;
 
-import locators.NoEmailErrorPageLocators;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class NoEmailErrorPage {
 
+    @FindBy(css = "#center_column > div.alert.alert-danger > ol > li")
+    private WebElement noEmailAlert;
+
     private WebDriver driver;
-    private NoEmailErrorPageLocators noEmailErrorPageLocators;
 
     public NoEmailErrorPage(WebDriver driver)
     {
         this.driver = driver;
-        noEmailErrorPageLocators = new NoEmailErrorPageLocators();
-        PageFactory.initElements(driver, noEmailErrorPageLocators);
+        PageFactory.initElements(driver, this);
     }
 
     public boolean noEmailCommunicateIsDisplayed()
     {
-        return noEmailErrorPageLocators.getNoEmailAlert().isDisplayed();
+        return noEmailAlert.isDisplayed();
     }
 }

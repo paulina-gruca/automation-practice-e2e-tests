@@ -1,22 +1,34 @@
 package pages;
 
-import locators.ContactPageLocators;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
 import java.util.Random;
 
 public class ContactPage {
 
+    @FindBy(css ="#id_contact > option")
+    private List<WebElement> listOfSubjectHeadings;
+
+    @FindBy(id = "email")
+    private WebElement emailAddressTextBox;
+
+    @FindBy(id = "message")
+    private WebElement messageArea;
+
+    @FindBy(id = "submitMessage")
+    private WebElement sendButton;
+
     private WebDriver driver;
-    private ContactPageLocators contactPageLocators;
     private Random random;
 
     public ContactPage(WebDriver driver)
     {
         this.driver = driver;
-        contactPageLocators = new ContactPageLocators();
-        PageFactory.initElements(driver, contactPageLocators);
+        PageFactory.initElements(driver, this);
         random = new Random();
     }
 
@@ -27,15 +39,14 @@ public class ContactPage {
 
     public void fillInContactForm(String email, String text)
     {
-        int index = random.nextInt(contactPageLocators.getListOfSubjectHeadings().size() - 1) + 1;
-        contactPageLocators.getListOfSubjectHeadings().get(index).click();
-        contactPageLocators.getEmailAddressTextBox().sendKeys(email);
-        contactPageLocators.getMessageArea().sendKeys(text);
+        int index = random.nextInt(listOfSubjectHeadings.size() - 1) + 1;
+        listOfSubjectHeadings.get(index).click();
+        emailAddressTextBox.sendKeys(email);
+        messageArea.sendKeys(text);
     }
 
-    public CorrectDeliveredMessagePage clickSendButton()
+    public void clickSendButton()
     {
-        contactPageLocators.getSendButton().click();
-        return new CorrectDeliveredMessagePage(driver);
+        sendButton.click();
     }
 }

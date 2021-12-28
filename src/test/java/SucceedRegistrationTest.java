@@ -11,11 +11,14 @@ public class SucceedRegistrationTest extends TestBase {
     public void shouldRegisterNewCustomer()
     {
         HomePage homePage = new HomePage(driver);
-        LogInPage loginPage = homePage.clickSignInButton();
+        homePage.clickSignInButton();
+        LogInPage loginPage = new LogInPage(driver);
         loginPage.generateAndEnterEmail();
-        RegistrationPage registrationPage = loginPage.clickOnCreateAnAccountButton();
+        loginPage.clickOnCreateAnAccountButton();
+        RegistrationPage registrationPage = new RegistrationPage(driver);
         registrationPage.fillInRegisterForm();
-        CorrectAuthenticationPage correctAuthenticationPage = registrationPage.clickOnRegisterButtonWithAllRequiredData();
+        registrationPage.clickOnRegisterButtonWithAllRequiredData();
+        CorrectAuthenticationPage correctAuthenticationPage = new CorrectAuthenticationPage(driver);
         Assertions.assertTrue(correctAuthenticationPage.newUserWasRegistered());
     }
 }

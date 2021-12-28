@@ -1,48 +1,57 @@
 package pages;
 
-import locators.HompePageLocators;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class HomePage {
 
+    @FindBy(className = "login")
+    private WebElement signInButton;
+
+    @FindBy(css = "#header_logo > a > img")
+    private WebElement logo;
+
+    @FindBy(id = "search_query_top")
+    private WebElement searchBox;
+
+    @FindBy(css = "#contact-link > a")
+    private WebElement contactUsButton;
+
     private WebDriver driver;
-    private HompePageLocators hompePageLocators;
 
     public HomePage(WebDriver driver)
     {
         this.driver = driver;
-        hompePageLocators = new HompePageLocators();
-        PageFactory.initElements(driver, hompePageLocators);
+        PageFactory.initElements(driver, this);
     }
 
     public boolean logoIsDisplayed()
     {
-        return hompePageLocators.getLogo().isDisplayed();
+        return logo.isDisplayed();
     }
 
     public boolean searchAreaIsDisplayed()
     {
-        return hompePageLocators.getSearchBox().isDisplayed();
+        return searchBox.isDisplayed();
     }
 
     public void searchProducts(String product)
     {
-        hompePageLocators.getSearchBox().sendKeys(product);
-        hompePageLocators.getSearchBox().sendKeys(Keys.ENTER);
+        searchBox.sendKeys(product);
+        searchBox.sendKeys(Keys.ENTER);
     }
 
-    public LogInPage clickSignInButton()
+    public void clickSignInButton()
     {
-        hompePageLocators.getSignInButton().click();
-        return new LogInPage(driver);
+        signInButton.click();
     }
 
-    public ContactPage clickContactUsButton()
+    public void clickContactUsButton()
     {
-        hompePageLocators.getContactUsButton().click();
-        return new ContactPage(driver);
+        contactUsButton.click();
     }
 
 }

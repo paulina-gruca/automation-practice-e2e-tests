@@ -13,7 +13,8 @@ public class DeletingProductFromCartTest extends TestBase {
         homePage.searchProducts("dress");
         SearchPage searchPage = new SearchPage(driver);
         searchPage.clickAddToCartButton();
-        CartPage cartPage = searchPage.clickProceedToCheckOutButton();
+        searchPage.clickProceedToCheckOutButton();
+        CartPage cartPage = new CartPage(driver);
         cartPage.clickDeleteButtonToRemoveProduct();
         Assertions.assertTrue(cartPage.productIsDeletedFromCart());
     }

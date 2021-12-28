@@ -1,34 +1,42 @@
 package pages;
 
-import locators.PaymentPageLocators;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class PaymentPage {
 
+    @FindBy(className = "bankwire")
+    private WebElement bankWirePaymentOption;
+
+    @FindBy(className = "page-subheading")
+    private WebElement bankWirePaymentOptionConfirmationHeading;
+
+    @FindBy(css = "#cart_navigation > button")
+    private WebElement confirmationOfOrderButton;
+
     private WebDriver driver;
-    private PaymentPageLocators paymentPageLocators;
 
     public PaymentPage(WebDriver driver)
     {
         this.driver = driver;
-        paymentPageLocators = new PaymentPageLocators();
-        PageFactory.initElements(driver, paymentPageLocators);
+        PageFactory.initElements(driver, this);
     }
 
     public void choosePayByBankOption()
     {
-        paymentPageLocators.getBankWirePaymentOption().click();
+        bankWirePaymentOption.click();
     }
 
     public boolean bankWirePaymentHeadingIsDisplayed()
     {
-        return paymentPageLocators.getBankWirePaymentOptionConfirmationHeading().isDisplayed();
+        return bankWirePaymentOptionConfirmationHeading.isDisplayed();
     }
 
     public void clickOnConfirmationButton()
     {
-        paymentPageLocators.getConfirmationOfOrderButton().click();
+       confirmationOfOrderButton.click();
     }
 
     public boolean orderConfirmationHeadingIsDisplayed()

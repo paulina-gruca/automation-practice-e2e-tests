@@ -10,10 +10,12 @@ public class FailedLogInTest extends TestBase{
     public void shouldFailWithIncorrectPassword()
     {
         HomePage homePage = new HomePage(driver);
-        LogInPage loginPage = homePage.clickSignInButton();
+        homePage.clickSignInButton();
+        LogInPage loginPage = new LogInPage(driver);
         loginPage.enterLogin("test@softie.pl");
         loginPage.enterPassword("wrongPass");
-        FailedAuthenticationPage failedAuthentication = loginPage.clickLogInButtonWithIncorrectPassword();
+        loginPage.clickLogInButtonWithIncorrectPassword();
+        FailedAuthenticationPage failedAuthentication = new FailedAuthenticationPage(driver);
         Assertions.assertTrue(failedAuthentication.errorCommunicateIsDisplayed());
 
     }

@@ -11,7 +11,8 @@ public class VisibilityOfLogoAndSearchBoxTest extends TestBase {
         HomePage homePage = new HomePage(driver);
         Assertions.assertTrue(homePage.logoIsDisplayed());
         Assertions.assertTrue(homePage.searchAreaIsDisplayed());
-        LogInPage loginPage = homePage.clickSignInButton();
+        homePage.clickSignInButton();
+        LogInPage loginPage = new LogInPage(driver);
         Assertions.assertTrue(loginPage.logoIsDisplayed());
         Assertions.assertTrue(loginPage.searchAreaIsDisplayed());
     }

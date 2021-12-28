@@ -1,19 +1,24 @@
 package pages;
 
-import locators.CorrectAuthenticationPageLocators;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class CorrectAuthenticationPage {
 
+    @FindBy(className = "account")
+    private WebElement loggedUserButton;
+
+    @FindBy(className = "logout")
+    private WebElement signOutButton;
+
     private WebDriver driver;
-    private CorrectAuthenticationPageLocators correctAuthenticationPageLocators;
 
     public CorrectAuthenticationPage(WebDriver driver)
     {
         this.driver = driver;
-        correctAuthenticationPageLocators = new CorrectAuthenticationPageLocators();
-        PageFactory.initElements(driver, correctAuthenticationPageLocators);
+        PageFactory.initElements(driver, this);
     }
 
     public boolean userIsLoggedIn()
@@ -23,13 +28,12 @@ public class CorrectAuthenticationPage {
 
     public boolean loggedUserButtonIsDisplayed()
     {
-        return correctAuthenticationPageLocators.getLoggedUserButton().isDisplayed();
+        return loggedUserButton.isDisplayed();
     }
 
-    public LogInPage clickSignOutButton()
+    public void clickSignOutButton()
     {
-        correctAuthenticationPageLocators.getSignOutButton().click();
-        return new LogInPage(driver);
+        signOutButton.click();
     }
 
     public boolean newUserWasRegistered()

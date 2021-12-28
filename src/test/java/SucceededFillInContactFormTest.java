@@ -10,9 +10,11 @@ public class SucceededFillInContactFormTest extends TestBase {
     public void shouldFillInContactForm()
     {
         HomePage homePage = new HomePage(driver);
-        ContactPage contactPage = homePage.clickContactUsButton();
+        homePage.clickContactUsButton();
+        ContactPage contactPage = new ContactPage(driver);
         contactPage.fillInContactForm("test@softie.pl", "Hello!");
-        CorrectDeliveredMessagePage correctDeliveredMessagePage = contactPage.clickSendButton();
+        CorrectDeliveredMessagePage correctDeliveredMessagePage = new CorrectDeliveredMessagePage(driver);
+        contactPage.clickSendButton();
         Assertions.assertTrue(correctDeliveredMessagePage.messageCommunicateIsDisplayed());
     }
 }

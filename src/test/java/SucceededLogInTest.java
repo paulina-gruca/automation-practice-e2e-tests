@@ -10,12 +10,13 @@ public class SucceededLogInTest extends TestBase{
     public void shouldLogInWithCorrectPasswordAndLogOut()
     {
         HomePage homePage = new HomePage(driver);
-        LogInPage loginPage = homePage.clickSignInButton();
-        loginPage.enterCorrectLogInData("test@softie.pl", "1qaz!QAZ");
-        CorrectAuthenticationPage correctAuthenticationPage = loginPage.clickLogInButtonWithCorrectPassword();
+        homePage.clickSignInButton();
+        LogInPage loginPage = new LogInPage(driver);
+        loginPage.enterCorrectLogInDataAndClickLogInButton("test@softie.pl", "1qaz!QAZ");
+        CorrectAuthenticationPage correctAuthenticationPage = new CorrectAuthenticationPage(driver);
         Assertions.assertTrue(correctAuthenticationPage.userIsLoggedIn());
         Assertions.assertTrue(correctAuthenticationPage.loggedUserButtonIsDisplayed());
-        loginPage = correctAuthenticationPage.clickSignOutButton();
+        correctAuthenticationPage.clickSignOutButton();
         Assertions.assertTrue(loginPage.loginPageTitleIsDisplayed());
     }
 }
