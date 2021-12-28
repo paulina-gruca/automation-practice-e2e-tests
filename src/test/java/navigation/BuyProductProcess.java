@@ -1,6 +1,5 @@
-package pages;
+package navigation;
 
-import locators.BuyProductProcessLocators;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -8,6 +7,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class BuyProductProcess {
 
@@ -32,7 +33,7 @@ public class BuyProductProcess {
         Actions builder = new Actions(driver);
         builder.moveToElement(buyProductProcessLocators.getImageOfProduct()).build().perform();
         buyProductProcessLocators.getAddToCartButton().click();
-        WebDriverWait wait = new WebDriverWait(driver, 15);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("icon-ok")));
     }
 

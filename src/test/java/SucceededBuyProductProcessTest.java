@@ -1,19 +1,23 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import pages.*;
+import navigation.*;
 
 public class SucceededBuyProductProcessTest extends TestBase{
 
+    BuyProductProcess buyProductProcess = new BuyProductProcess(driver);
+
+    private static final String CORRECT_LOGIN = "test@softie.pl";
+    private static final String CORRECT_PASSWORD = "1qaz!QAZ";
+
     @Test
-    public void shouldBuyProduct()
+    void shouldBuyProduct()
     {
-        BuyProductProcess buyProductProcess = new BuyProductProcess(driver);
         buyProductProcess.searchProducts("dress");
         buyProductProcess.clickAddToCartButton();
         buyProductProcess.clickProceedToCheckOutButton1();
         Assertions.assertTrue(buyProductProcess.productIsAddedToCart());
         buyProductProcess.clickProceedToCheckOutButton2();
-        buyProductProcess.enterCorrectLogInData("test@softie.pl", "1qaz!QAZ");
+        buyProductProcess.enterCorrectLogInData(CORRECT_LOGIN, CORRECT_PASSWORD);
         buyProductProcess.clickOnProceedToCheckOutButton3();
         buyProductProcess.confirmTermsOfServiceAndClickOnProceedToCheckOutButton4();
         buyProductProcess.choosePayByBankOption();
